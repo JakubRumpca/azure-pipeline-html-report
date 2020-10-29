@@ -1,0 +1,1 @@
+# azure-pipeline-html-report
