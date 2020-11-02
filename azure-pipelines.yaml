@@ -19,43 +19,31 @@ steps:
     verbose: false
     customCommand: 'run build:cidev'
 
-- task: PackageAzureDevOpsExtension@2  ???????????????????????????????????????????????
-  displayName: 'TFX: Package Extension'
-  inputs:
-    rootFolder: .
-    patternManifest: 'azure-devops-extension.json'
-    publisherId: PawelLeszczewicz
-    extensionId: azure-pipelines-har-viewer
-    extensionName: 'HAR Viewer'
-    extensionVisibility: public
-    extensionPricing: free
-  condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
-
-- task: PackageAzureDevOpsExtension@2   ????????????????????????????????????????????
+- task: PackageAzureDevOpsExtension@2
   displayName: 'TFX: Package Extension Dev'
   inputs:
     rootFolder: .
     patternManifest: 'azure-devops-extension.json'
-    publisherId: PawelLeszczewicz
-    extensionId: azure-pipelines-har-viewer
+    publisherId: JakubRumpca
+    extensionId: azure-pipelines-html-report
     extensionTag: dev
-    extensionName: 'HAR Viewer Dev'
+    extensionName: 'Html Viewer Dev'
     extensionVersion: '1.0.$(Build.BuildId)'
     updateTasksVersion: true
     extensionVisibility: private
     extensionPricing: free
   condition: and(succeeded(), ne(variables['Build.SourceBranchName'], 'master'))
 
-- task: PublishAzureDevOpsExtension@2  ???????????????????????????????????
+- task: PublishAzureDevOpsExtension@2
   displayName: 'TFX: Publish Extension Dev'
   inputs:
-    connectedServiceName: market-place-pawel
+    connectedServiceName: JakubMarketPlace
     rootFolder: .
     patternManifest: 'azure-devops-extension.json'
-    publisherId: PawelLeszczewicz
-    extensionId: azure-pipelines-har-viewer
+    publisherId: JakubRumpca
+    extensionId: azure-pipelines-html-report
     extensionTag: dev
-    extensionName: 'HAR Viewer Dev'
+    extensionName: 'Html Viewer Dev'
     extensionVersion: '1.0.$(Build.BuildId)'
     extensionVisibility: private
     extensionPricing: free
@@ -64,7 +52,7 @@ steps:
 - task: ShareAzureDevOpsExtension@2
   displayName: 'TFX: Share Extension'
   inputs:
-    connectedServiceName: market-place-pawel
+    connectedServiceName: JakubMarketPlace
     method: vsix
     vsixFile: '**.vsix'
     accounts: 'maciejmaciejewski-dev'
