@@ -1,0 +1,17 @@
+{
+  "name": "publish-html-report",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "dependencies": {
+    "azure-pipelines-task-lib": "^2.9.3",
+    "fs-extra": "^8.1.0",
+    "globby": "^11.0.0",
+    "hat": "0.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "author": "",
+  "license": "ISC"
+}

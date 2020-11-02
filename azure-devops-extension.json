@@ -1,0 +1,75 @@
+{
+    "manifestVersion": 1,
+    "id": "azure-pipelines-html-report",
+    "publisher": "MaciejMaciejewski",
+    "version": "0.1.0",
+    "author": "Maciej Maciejewski",
+    "name": "Report HTML",
+    "description": "blablabla",
+    "public": false,
+    "categories": ["Azure Pipelines"],
+    "icons": {
+        "default": "icon.png"
+    },
+    "tags": ["Preview"],
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/JakubRumpca/azure-pipeline-html-report"
+    },
+    "content": {
+        "details": {
+            "path": "README.md"
+        },
+        "license": {
+            "path": "LICENSE"
+        }
+    },
+    "scopes": [
+        "vso.build_execute"
+    ],
+    "demands": [
+        "api-version/3.0"
+    ],
+    "contributions": [
+        {
+            "id": "build-html-report-tab",
+            "type": "ms.vss-build-web.build-results-tab",
+            "description": "Embed HTML files viewer in Azure Pipelines Release",
+            "targets": ["ms.vss-build-web.build-results-view"],
+            "properties": {
+                "name": "HTML Viewer",
+                "uri": "dist/tabContent.html",
+                "registeredObjectId": "registerBuild",
+                "supportsTasks": ["bf52d8fd-c399-4acd-98c7-a03ceee2a974"],
+                "dynamic": true
+            },
+            "includes": ["ms.vss-releaseManagement-web.release-service-data-external"]
+        },
+        {
+            "id": "PublishHtmlReport",
+            "type": "ms.vss-distributed-task.task",
+            "targets": ["ms.vss-distributed-task.tasks"],
+            "properties": {
+                "name": "PublishHtmlReport",
+                "displayName": "Publish HTML Report"
+            }
+        }
+    ],
+    "files": [
+        {
+            "path": "./PublishHtmlReport",
+            "packagePath": "PublishHtmlReport",
+            "addressable": false
+        },
+        {
+            "path": "./build",
+            "packagePath": "build",
+            "addressable": true
+        }
+    ]
+}

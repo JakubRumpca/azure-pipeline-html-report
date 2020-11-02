@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <style>
+    html, body {
+      background-color: transparent !important;
+      margin: 0;
+      padding: 0;
+    }
+
+    .wide {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 100%;
+      height: 96%;
+      border: 1px solid #ddd;
+      background-color: #F8F8F8;
+      box-shadow: 0 2px 6px 2px rgba(0, 0, 0, .05);
+    }
+
+    #protractor-ext-message p, .wide p {
+      padding: 0;
+      margin: auto 0;
+      font-family: arial, serif;
+      text-align: center;
+      position: relative;
+      top: 50%;
+      color: #ccc;
+      font-size: 30px;
+    }
+
+    .error-badge {
+      background-image: url("images/error.png");
+      width: 100px;
+      height: 100px;
+      display: none;
+      position: relative;
+      margin: auto;
+      top: 45%;
+    }
+
+    .spinner {
+      width: 100px;
+      height: 100px;
+      border: 1px solid #ccc;
+      border-top: 5px solid #E32E34;
+      border-radius: 50%;
+      position: relative;
+      top: 45%;
+      margin: auto;
+      animation: spin 2s infinite linear;
+    }
+
+    @keyframes spin {
+      from{
+        transform: rotate(0deg);
+      }to{
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="html-report-extention-container"/>
+  <script type="text/javascript" src="tabContent.js" charset="utf-8"></script>
+</body>
+</html>

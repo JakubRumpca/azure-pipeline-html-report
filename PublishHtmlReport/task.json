@@ -1,0 +1,52 @@
+{
+  "id": "bf52d8fd-c399-4acd-98c7-a03ceee2a974",
+  "name": "PublishHtmlReport",
+  "friendlyName": "Publish Html Report",
+  "description": "Publish Html Report",
+  "author": "",
+  "helpMarkDown": "Replace with markdown to show in help",
+  "category": "Utility",
+  "visibility": [
+    "Build"
+  ],
+  "demands": [],
+  "version": {
+    "Major": "0",
+    "Minor": "1",
+    "Patch": "0"
+  },
+  "minimumAgentVersion": "1.95.0",
+  "instanceNameFormat": "Publish Html Report",
+  "inputs": [
+    {
+      "name": "tabName",
+      "type": "string",
+      "label": "Report tab name",
+      "defaultValue": "HTML Report",
+      "required": false,
+      "helpMarkDown": "Name of the tab displayed in the report"
+    },
+    {
+      "name": "resultDir",
+      "type": "filePath",
+      "label": "HTML file Directory",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "HTML file directory where PublishHtmlReport is run."
+    },
+    {
+      "name": "reportName",
+      "type": "string",
+      "label": "Report Name",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Name of the report"
+    }
+  ],
+  "execution": {
+    "Node10": {
+      "target": "index.js",
+      "argumentFormat": ""
+    }
+  }
+}
