@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "moduleResolution": "node",
+    "target": "es6",
+    "outDir": "dist/",
+    "jsx": "react",
+    "types": [
+        "react"
+    ],
+    "skipLibCheck": true,
+  },
+  "files": [
+      "src/tabContent.tsx"
+  ]
+}

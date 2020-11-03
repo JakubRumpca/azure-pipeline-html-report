@@ -1,5 +1,4 @@
 import * as React from "react"
-import ReactDOM from 'react-dom';
 
 
 export default class HtmlReport extends React.Component{
