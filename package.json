@@ -11,14 +11,17 @@
     "@testing-library/user-event": "^7.2.1",
     "fs-extra": "8.1.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "^4.0.0"
+    "react-dom": "^17.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "clean": "rimraf ./dist",
+    "build:cidev": "npm run clean && webpack --mode development",
+    "build": "npm run clean && webpack --mode development",
+    "postbuild": "npm run package-extension",
+    "postinstall": "cd PublishHtmlReport && npm install",
+    "test": "echo No test available",
+    "prune": "npm prune --production --ignore-scripts",
+    "package-extension": "tfx extension create --manifest-globs azure-devops-extension.json --overrides-file dev_manifest.json"
   },
   "eslintConfig": {
     "extends": "react-app"
