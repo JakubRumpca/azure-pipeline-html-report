@@ -26,11 +26,9 @@
     "css-loader": "^3.4.2",
     "file-loader": "^6.0.0",
     "jsdom": "^16.2.1",
-    "node-sass": "^4.13.1",
     "rimraf": "^3.0.2",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
-    "tfx-cli": "^0.7.11",
     "ts-loader": "^6.2.1",
     "typescript": "^3.8.3",
     "webpack": "^4.42.0",
@@ -43,8 +41,7 @@
     "postbuild": "npm run package-extension",
     "postinstall": "cd PublishHtmlReport && npm install",
     "test": "echo No test available",
-    "prune": "npm prune --production --ignore-scripts",
-    "package-extension": "tfx extension create --manifest-globs azure-devops-extension.json --overrides-file dev_manifest.json"
+    "prune": "npm prune --production --ignore-scripts"
   },
   "eslintConfig": {
     "extends": "react-app"
