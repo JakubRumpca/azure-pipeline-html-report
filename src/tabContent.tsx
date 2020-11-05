@@ -15,8 +15,6 @@ import HtmlReport from './component/HtmlReport'
 
 
 const ATTACHMENT_TYPE = "html.report";
-const OUR_TASK_ID = ["bf52d8fd-c399-4acd-98c7-a03ceee2a974"]
-
 
 SDK.init()
 SDK.ready().then(() => {
@@ -36,18 +34,6 @@ SDK.ready().then(() => {
 function displayReports(attachmentClient: AttachmentClient) {
   ReactDOM.render(<TaskAttachmentPanel attachmentClient={attachmentClient} />, document.getElementById("html-report-extention-container"))
 }
-
-SDK.register("registerRelease", {
-  isInvisible: function (state) {
-    let resultArray = []
-    state.releaseEnvironment.deployPhasesSnapshot.forEach(phase => {
-      phase.workflowTasks.forEach(task => {
-        resultArray.push(task.taskId)
-      })
-    })
-    return !OUR_TASK_ID.some(id => resultArray.includes(id))
-  }
-})
 
 class AttachmentClient {
   private attachments: Attachment[] = []
