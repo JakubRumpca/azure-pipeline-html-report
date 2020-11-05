@@ -67,8 +67,8 @@
             "addressable": false
         },
         {
-            "path": "./build",
-            "packagePath": "build",
+            "path": "./dist",
+            "packagePath": "dist",
             "addressable": true
         }
     ]
