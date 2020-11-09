@@ -1,10 +1,10 @@
 {
     "manifestVersion": 1,
     "id": "azure-pipelines-html-report",
-    "publisher": "MaciejMaciejewski",
+    "publisher": "JakubRumpca",
     "version": "0.1.0",
-    "author": "Maciej Maciejewski",
-    "name": "Report HTML",
+    "author": "Jakub Rumpca",
+    "name": "Html Viewer Dev",
     "description": "blablabla",
     "public": false,
     "categories": ["Azure Pipelines"],
