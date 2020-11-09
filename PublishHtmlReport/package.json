@@ -8,6 +8,7 @@
     "azure-pipelines-task-lib": "^2.9.3",
     "fs-extra": "^8.1.0",
     "globby": "^11.0.0",
+    "dashify": "^2.0.0",
     "hat": "0.0.3"
   },
   "devDependencies": {},
