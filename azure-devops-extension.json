@@ -70,6 +70,10 @@
             "path": "./dist",
             "packagePath": "dist",
             "addressable": true
+        },
+        {
+            "path": "./PublishHtmlReport",
+            "addressable": true
         }
     ]
 }
