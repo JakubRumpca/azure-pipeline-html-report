@@ -38,7 +38,7 @@
       "name": "fileName",
       "type": "string",
       "label": "Report Name",
-      "defaultValue": "report.html",
+      "defaultValue": "",
       "required": true,
       "helpMarkDown": "Name of the report"
     }
