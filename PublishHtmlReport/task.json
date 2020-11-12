@@ -22,7 +22,7 @@
       "name": "tabName",
       "type": "string",
       "label": "Report tab name",
-      "defaultValue": "HTML Report",
+      "defaultValue": "HTML-Report",
       "required": false,
       "helpMarkDown": "Name of the tab displayed in the report"
     },

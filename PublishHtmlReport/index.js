@@ -8,7 +8,7 @@ try {
     const jobName = dashify(tl.getVariable('Agent.JobName'))
     const stageName = dashify(tl.getVariable('System.StageDisplayName'))
     const stageAttempt = tl.getVariable('System.StageAttempt')
-    const tabName = tl.getInput('tabName', false ) || 'Html Report'
+    const tabName = tl.getInput('tabName', false ) || 'Html-Report'
     let path = resolve(reportDir + fileName)
     tl.addAttachment('report-html', `${tabName}.${jobName}.${stageName}.${stageAttempt}`, path)  
 } catch (error) {
