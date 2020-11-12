@@ -27,10 +27,10 @@
       "helpMarkDown": "Name of the tab displayed in the report"
     },
     {
-      "name": "resultDir",
+      "name": "reportDir",
       "type": "filePath",
       "label": "HTML file Directory",
-      "defaultValue": "./HtmlReport",
+      "defaultValue": "",
       "required": true,
       "helpMarkDown": "HTML file directory where PublishHtmlReport is run."
     },
