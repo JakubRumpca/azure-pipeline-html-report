@@ -33,14 +33,6 @@
       "defaultValue": "",
       "required": true,
       "helpMarkDown": "HTML file directory where PublishHtmlReport is run."
-    },
-    {
-      "name": "fileName",
-      "type": "string",
-      "label": "Report Name",
-      "defaultValue": "",
-      "required": true,
-      "helpMarkDown": "Name of the report"
     }
   ],
   "execution": {
