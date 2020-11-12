@@ -35,7 +35,7 @@
       "helpMarkDown": "HTML file directory where PublishHtmlReport is run."
     },
     {
-      "name": "reportName",
+      "name": "fileName",
       "type": "string",
       "label": "Report Name",
       "defaultValue": "",
