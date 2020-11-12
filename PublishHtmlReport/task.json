@@ -30,7 +30,7 @@
       "name": "resultDir",
       "type": "filePath",
       "label": "HTML file Directory",
-      "defaultValue": "",
+      "defaultValue": "./HtmlReport",
       "required": true,
       "helpMarkDown": "HTML file directory where PublishHtmlReport is run."
     },
