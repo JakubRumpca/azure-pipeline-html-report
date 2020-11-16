@@ -21,7 +21,7 @@ SDK.ready().then(() => {
   try {
     const config = SDK.getConfiguration()
     config.onBuildChanged((build: Build) => {
-      let buildAttachmentClient = new AttachmentClient(build)
+      let buildAttachmentClient = new BuildAttachmentClient(build)
       buildAttachmentClient.init().then(() => {
         displayReports(buildAttachmentClient)
       }).catch(error => {throw new Error(error)})
@@ -35,11 +35,41 @@ function displayReports(attachmentClient: AttachmentClient) {
   ReactDOM.render(<TaskAttachmentPanel attachmentClient={attachmentClient} />, document.getElementById("html-report-extention-container"))
 }
 
-class AttachmentClient {
-  private attachments: Attachment[] = []
+abstract class AttachmentClient {
+  protected attachments: Attachment[] = []
+  protected authHeaders: Object = undefined
+  protected reportHtmlContent: string = undefined
+  protected appJsContent: string = undefined
+  constructor() {}
+
+  async loadReportTemplates() {
+    console.log('Get report templates')
+    const response = await fetch('./report.html')
+    this.reportHtmlContent = await response.text()
+  }
+
+  // Retrieve attachments and attachment contents from AzDO
+  abstract async init(): Promise<void>
+
+  public getAttachments() : Attachment[] {
+    return this.attachments
+  }
+
+  public getDownloadableAttachment(attachmentName: string): Attachment {
+    const attachment = this.attachments.find((attachment) => { return attachment.name === attachmentName})
+    if (!(attachment && attachment._links && attachment._links.self && attachment._links.self.href)) {
+      throw new Error("Attachment " + attachmentName + " is not downloadable")
+    }
+    return attachment
+  }
+
+}
+
+class BuildAttachmentClient extends AttachmentClient {
   private build: Build
 
   constructor(build: Build) {
+    super()
     this.build = build
   }
 
@@ -48,10 +78,8 @@ class AttachmentClient {
     this.attachments = await buildClient.getAttachments(this.build.project.id, this.build.id, ATTACHMENT_TYPE)
     console.log(this.attachments)
   }
-  public getAttachments() : Attachment[] {
-    return this.attachments
-  }
 }
+
 
 interface TaskAttachmentPanelProps {
   attachmentClient: AttachmentClient
