@@ -14,7 +14,7 @@ import { Tab, TabBar, TabSize } from "azure-devops-ui/Tabs"
 import HtmlReport from './component/HtmlReport'
 
 
-const ATTACHMENT_TYPE = "html.report";
+const ATTACHMENT_TYPE = "html-report";
 
 SDK.init()
 SDK.ready().then(() => {
@@ -109,10 +109,10 @@ export default class TaskAttachmentPanel extends React.Component<TaskAttachmentP
               {tabs}
             </TabBar>
           : null }
-          <Observer selectedTabId={this.selectedTabId} tabContents={this.tabContents}>
+          <Observer selectedTabId={this.selectedTabId} tabContents={this.tabContents}>            
             {(props: { selectedTabId: string }) => {
-              const att = tabs.filter(attachment => attachment.stage === props.selectedTabId)
-              return <HtmlReport />
+              this.tabContents.set(props.selectedTabId, '<iframe src="./report.html" width="1920" height="1080"></iframe>')
+              return  <span dangerouslySetInnerHTML={ {__html: this.tabContents.get(props.selectedTabId)} } />
             }}
           </Observer>
         </div>
