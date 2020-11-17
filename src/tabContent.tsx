@@ -39,7 +39,6 @@ abstract class AttachmentClient {
   protected attachments: Attachment[] = []
   protected authHeaders: Object = undefined
   protected reportHtmlContent: string = undefined
-  protected appJsContent: string = undefined
   constructor() {}
 
   async loadReportTemplates() {
@@ -92,25 +91,7 @@ export default class TaskAttachmentPanel extends React.Component<TaskAttachmentP
 
   constructor(props: TaskAttachmentPanelProps) {
     super(props);
-    this.selectedTabId = new ObservableValue(props.attachmentClient.getAttachments()[0].name)
     this.tabContents = new ObservableObject()
-  }
-
-  public componentDidMount() {
-    // const config = SDK.getConfiguration()
-    // SDK.notifyLoadSucceeded().then(() => {
-    //     SDK.resize()
-    // });
-  }
-
-  public escapeHTML(str: string) {
-    return str.replace(/[&<>'"]/g, tag => ({
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;',
-          "'": '&#39;',
-          '"': '&quot;'
-        }[tag] || tag))
   }
 
   public render() {
