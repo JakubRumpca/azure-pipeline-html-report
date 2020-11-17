@@ -13,7 +13,7 @@ import { Tab, TabBar, TabSize } from "azure-devops-ui/Tabs"
 import * as mustache from 'mustache'
 
 
-const ATTACHMENT_TYPE = "html-report";
+const ATTACHMENT_TYPE = "report-html";
 
 SDK.init()
 SDK.ready().then(() => {
