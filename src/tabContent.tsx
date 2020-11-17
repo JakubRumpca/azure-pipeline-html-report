@@ -76,10 +76,7 @@ abstract class AttachmentClient {
     }
     const responseText = await response.text()
     console.log(responseText)
-    mustache.tags =  [ '<%', '%>' ];
-    mustache.escape = function(text) { return text }
-    const renderedReportHtml = mustache.render(this.reportHtmlContent)
-    return renderedReportHtml
+    return responseText
   }
   
 }
