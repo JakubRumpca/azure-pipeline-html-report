@@ -11,9 +11,6 @@ import { ObservableValue, ObservableObject } from "azure-devops-ui/Core/Observab
 import { Observer } from "azure-devops-ui/Observer"
 import { Tab, TabBar, TabSize } from "azure-devops-ui/Tabs"
 
-import HtmlReport from './component/HtmlReport'
-
-
 const ATTACHMENT_TYPE = "html-report";
 
 SDK.init()
@@ -62,6 +59,20 @@ abstract class AttachmentClient {
     return attachment
   }
 
+  public async getAttachmentContent(attachmentName: string): Promise<string> {
+    if (this.authHeaders === undefined) {
+      console.log('Get access token')
+      const accessToken = await SDK.getAccessToken()
+      const b64encodedAuth = Buffer.from(':' + accessToken).toString('base64')
+      this.authHeaders = { headers: {'Authorization': 'Basic ' + b64encodedAuth} }
+    }
+    console.log("Get " + attachmentName + " attachment content")
+    const attachment = this.getDownloadableAttachment(attachmentName)
+    const response = await fetch(attachment._links.self.href, this.authHeaders)
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
+  }
 }
 
 class BuildAttachmentClient extends AttachmentClient {
@@ -91,7 +102,18 @@ export default class TaskAttachmentPanel extends React.Component<TaskAttachmentP
 
   constructor(props: TaskAttachmentPanelProps) {
     super(props);
+    this.selectedTabId = new ObservableValue(props.attachmentClient.getAttachments()[0].name)
     this.tabContents = new ObservableObject()
+  }
+
+  public escapeHTML(str: string) {
+    return str.replace(/[&<>'"]/g, tag => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    }[tag] || tag))
   }
 
   public render() {
@@ -120,7 +142,9 @@ export default class TaskAttachmentPanel extends React.Component<TaskAttachmentP
           : null }
           <Observer selectedTabId={this.selectedTabId} tabContents={this.tabContents}>            
             {(props: { selectedTabId: string }) => {
-              this.tabContents.set(props.selectedTabId, '<iframe src="./report.html" width="1920" height="1080"></iframe>')
+              this.props.attachmentClient.getAttachmentContent(props.selectedTabId).then((content) => {
+                this.tabContents.set(props.selectedTabId, '<iframe class="wide" srcdoc="' + this.escapeHTML(content) + '"></iframe>')
+              })
               return  <span dangerouslySetInnerHTML={ {__html: this.tabContents.get(props.selectedTabId)} } />
             }}
           </Observer>
