@@ -10,6 +10,8 @@ import { Build, BuildRestClient, Attachment } from "azure-devops-extension-api/B
 import { ObservableValue, ObservableObject } from "azure-devops-ui/Core/Observable"
 import { Observer } from "azure-devops-ui/Observer"
 import { Tab, TabBar, TabSize } from "azure-devops-ui/Tabs"
+import * as mustache from 'mustache'
+
 
 const ATTACHMENT_TYPE = "html-report";
 
@@ -72,7 +74,14 @@ abstract class AttachmentClient {
     if (!response.ok) {
       throw new Error(response.statusText)
     }
+    const responseText = await response.text()
+    console.log(responseText)
+    mustache.tags =  [ '<%', '%>' ];
+    mustache.escape = function(text) { return text }
+    const renderedReportHtml = mustache.render(this.reportHtmlContent)
+    return renderedReportHtml
   }
+  
 }
 
 class BuildAttachmentClient extends AttachmentClient {
