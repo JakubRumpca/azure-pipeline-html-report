@@ -132,7 +132,7 @@ export default class TaskAttachmentPanel extends React.Component<TaskAttachmentP
       }
       return (
         <div className="flex-column">
-          { attachments.length > 1 ?
+          { attachments.length > 0 ?
             <TabBar
               onSelectedTabChanged={this.onSelectedTabChanged}
               selectedTabId={this.selectedTabId}
