@@ -10,7 +10,6 @@ import { Build, BuildRestClient, Attachment } from "azure-devops-extension-api/B
 import { ObservableValue, ObservableObject } from "azure-devops-ui/Core/Observable"
 import { Observer } from "azure-devops-ui/Observer"
 import { Tab, TabBar, TabSize } from "azure-devops-ui/Tabs"
-import * as mustache from 'mustache'
 
 
 const ATTACHMENT_TYPE = "report-html";
@@ -148,9 +147,11 @@ export default class TaskAttachmentPanel extends React.Component<TaskAttachmentP
           : null }
           <Observer selectedTabId={this.selectedTabId} tabContents={this.tabContents}>            
             {(props: { selectedTabId: string }) => {
-              this.props.attachmentClient.getAttachmentContent(props.selectedTabId).then((content) => {
-                this.tabContents.set(props.selectedTabId, '<div>&nbsp;</div><iframe class="wide" srcdoc="' + this.escapeHTML(content) + '"></iframe>')
+              if ( this.tabContents.get(props.selectedTabId) === this.tabInitialContent) {
+                this.props.attachmentClient.getAttachmentContent(props.selectedTabId).then((content) => {
+                  this.tabContents.set(props.selectedTabId, '<iframe class="wide" srcdoc="' + this.escapeHTML(content) + '"></iframe>')
               })
+            }
               return  <span dangerouslySetInnerHTML={ {__html: this.tabContents.get(props.selectedTabId)} } />
             }}
           </Observer>
