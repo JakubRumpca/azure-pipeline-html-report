@@ -149,7 +149,7 @@ export default class TaskAttachmentPanel extends React.Component<TaskAttachmentP
             {(props: { selectedTabId: string }) => {
               if ( this.tabContents.get(props.selectedTabId) === this.tabInitialContent) {
                 this.props.attachmentClient.getAttachmentContent(props.selectedTabId).then((content) => {
-                  this.tabContents.set(props.selectedTabId, '<div><iframe class="wide flex-row flex-center" srcdoc="' + this.escapeHTML(" ") + '" ></iframe><iframe class="wide flex-row flex-center" srcdoc="' + this.escapeHTML(content) + '"></iframe></div>')
+                  this.tabContents.set(props.selectedTabId, '<iframe class="wide flex-row flex-center" srcdoc="' + this.escapeHTML(content) + '"></iframe>')
               })
             }
               return  <span dangerouslySetInnerHTML={ {__html: this.tabContents.get(props.selectedTabId)} } />
