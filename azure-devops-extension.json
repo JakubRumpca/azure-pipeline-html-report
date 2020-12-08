@@ -5,7 +5,7 @@
     "version": "0.1.0",
     "author": "Jakub Rumpca",
     "name": "Html Viewer Dev",
-    "description": "blablabla",
+    "description": "Embed HTML report in Azure Pipelines",
     "public": false,
     "categories": ["Azure Pipelines"],
     "icons": {

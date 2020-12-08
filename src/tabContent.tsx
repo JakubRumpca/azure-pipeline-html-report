@@ -39,15 +39,6 @@ abstract class AttachmentClient {
   protected reportHtmlContent: string = undefined
   constructor() {}
 
-  async loadReportTemplates() {
-    console.log('Get report templates')
-    const response = await fetch('./report.html')
-    this.reportHtmlContent = await response.text()
-  }
-
-  // Retrieve attachments and attachment contents from AzDO
-  abstract async init(): Promise<void>
-
   public getAttachments() : Attachment[] {
     return this.attachments
   }
