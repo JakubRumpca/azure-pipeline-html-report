@@ -1,4 +1,8 @@
 steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '12.x'
+
 - task: Npm@1
   displayName: 'NPM: Install Task Dependencies'
   inputs:
@@ -35,19 +39,18 @@ steps:
   condition: and(succeeded(), ne(variables['Build.SourceBranchName'], 'master'))
 
 - task: PublishAzureDevOpsExtension@2
-  displayName: 'TFX: Publish Extension Dev'
+  displayName: 'TFX: Publish Extension'
   inputs:
     connectedServiceName: JakubMarketPlace
     rootFolder: .
     patternManifest: 'azure-devops-extension.json'
     publisherId: JakubRumpca
     extensionId: azure-pipelines-html-report
-    extensionTag: dev
-    extensionName: 'Html Viewer Dev'
+    extensionName: 'Html Viewer'
     extensionVersion: '1.0.$(Build.BuildId)'
     extensionVisibility: private
     extensionPricing: free
-  condition: and(succeeded(), ne(variables['Build.SourceBranchName'], 'master'))
+  condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
 
 - task: ShareAzureDevOpsExtension@2
   displayName: 'TFX: Share Extension'
