@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "azure-pipelines-html-report",
     "publisher": "JakubRumpca",
-    "version": "0.1.1",
+    "version": "1.0.0",
     "author": "Jakub Rumpca",
     "name": "Html Viewer Dev",
     "description": "Embed HTML report in Azure Pipelines",
