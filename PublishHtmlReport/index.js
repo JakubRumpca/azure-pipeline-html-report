@@ -1,8 +1,9 @@
 const tl = require('azure-pipelines-task-lib');
-const { resolve } = require('path');
+const { resolve, basename, join } = require('path');
 const dashify = require('dashify')
 const globby = require('globby')
-
+const { readFileSync, writeFileSync } = require('fs')
+const { load } = require('cheerio')
 
 function run () {
     let reportDir = tl.getPathInput('reportDir', true, true);
