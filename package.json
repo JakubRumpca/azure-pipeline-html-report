@@ -1,6 +1,6 @@
 {
   "name": "azure-pipelines-html-report",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
   "author": "Jakub Rumpca",
   "dependencies": {

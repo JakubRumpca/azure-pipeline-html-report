@@ -14,8 +14,12 @@ function run () {
   
     files.forEach(file => {
       tl.debug(`Reading report ${file}`)
+      const fileContent = readFileSync(file).toString()
+      const document = load(fileContent)
+      writeFileSync(file, document.html())
+  
       const attachmentProperties = {
-        name: path.basename(file),
+        name: generateName(basename(file)),
         type: 'report-html'
       }
   
@@ -24,15 +28,26 @@ function run () {
       
     })
 
+    // const jobName = dashify(tl.getVariable('Agent.JobName'))
+    // const stageName = dashify(tl.getVariable('System.StageDisplayName'))
+    // const stageAttempt = tl.getVariable('System.StageAttempt')
+    // const tabName = tl.getInput('tabName', false ) || 'Html-Report'
+    // let path = resolve(reportDir)
+    // console.log(path)
+    // tl.addAttachment('report-html', `${tabName}.${jobName}.${stageName}.${stageAttempt}`, path)  
+    const summaryPath = resolve(join(cwd,'summary.json'))
+    writeFileSync(summaryPath, JSON.stringify(fileProperties))
+  console.log(summaryPath)
+    tl.command('task.addattachment', { name: generateName('summary.json'), type: 'report.summary'}, summaryPath)
+}
+function generateName (fileName) {
     const jobName = dashify(tl.getVariable('Agent.JobName'))
     const stageName = dashify(tl.getVariable('System.StageDisplayName'))
     const stageAttempt = tl.getVariable('System.StageAttempt')
     const tabName = tl.getInput('tabName', false ) || 'Html-Report'
-    let path = resolve(reportDir)
-    console.log(path)
-    tl.addAttachment('report-html', `${tabName}.${jobName}.${stageName}.${stageAttempt}`, path)  
-}
-
+  
+    return `${tabName}.${jobName}.${stageName}.${stageAttempt}.${fileName}`
+  }
 
 try {
     run()
