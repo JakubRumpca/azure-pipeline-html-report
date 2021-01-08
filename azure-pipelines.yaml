@@ -24,18 +24,6 @@ steps:
     customCommand: 'run build:cidev'
 
 - task: PackageAzureDevOpsExtension@2
-  displayName: 'TFX: Package Extension Prod'
-  inputs:
-    rootFolder: .
-    patternManifest: 'azure-devops-extension.json'
-    publisherId: JakubRumpca
-    extensionId: azure-pipelines-html-report
-    extensionName: 'Html Viewer'
-    extensionVisibility: public
-    extensionPricing: free
-  condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'main'))
-
-- task: PackageAzureDevOpsExtension@2
   displayName: 'TFX: Package Extension Dev'
   inputs:
     rootFolder: .
