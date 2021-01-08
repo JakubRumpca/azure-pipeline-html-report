@@ -28,17 +28,17 @@ function run () {
       
     })
 
-    // const jobName = dashify(tl.getVariable('Agent.JobName'))
-    // const stageName = dashify(tl.getVariable('System.StageDisplayName'))
-    // const stageAttempt = tl.getVariable('System.StageAttempt')
-    // const tabName = tl.getInput('tabName', false ) || 'Html-Report'
+    const jobName = dashify(tl.getVariable('Agent.JobName'))
+    const stageName = dashify(tl.getVariable('System.StageDisplayName'))
+    const stageAttempt = tl.getVariable('System.StageAttempt')
+    const tabName = tl.getInput('tabName', false ) || 'Html-Report'
     // let path = resolve(reportDir)
     // console.log(path)
     // tl.addAttachment('report-html', `${tabName}.${jobName}.${stageName}.${stageAttempt}`, path)  
     const summaryPath = resolve(reportDir)
     writeFileSync(summaryPath, JSON.stringify(fileProperties))
     console.log(summaryPath)
-    tl.command('task.addattachment', { name: generateName('report.html'), type: 'report-html'}, summaryPath)
+    tl.addAttachment('report-html', `${tabName}.${jobName}.${stageName}.${stageAttempt}`, summaryPath)
 }
 function generateName (fileName) {
     const jobName = dashify(tl.getVariable('Agent.JobName'))
