@@ -35,10 +35,10 @@ function run () {
     // let path = resolve(reportDir)
     // console.log(path)
     // tl.addAttachment('report-html', `${tabName}.${jobName}.${stageName}.${stageAttempt}`, path)  
-    const summaryPath = resolve(join(reportDir,'summary.json'))
+    const summaryPath = resolve(reportDir)
     writeFileSync(summaryPath, JSON.stringify(fileProperties))
-  console.log(summaryPath)
-    tl.command('task.addattachment', { name: generateName('summary.json'), type: 'report.summary'}, summaryPath)
+    console.log(summaryPath)
+    tl.command('task.addattachment', { name: generateName('report.html'), type: 'report-html'}, summaryPath)
 }
 function generateName (fileName) {
     const jobName = dashify(tl.getVariable('Agent.JobName'))
