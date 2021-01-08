@@ -32,9 +32,6 @@ function run () {
     const stageName = dashify(tl.getVariable('System.StageDisplayName'))
     const stageAttempt = tl.getVariable('System.StageAttempt')
     const tabName = tl.getInput('tabName', false ) || 'Html-Report'
-    // let path = resolve(reportDir)
-    // console.log(path)
-    // tl.addAttachment('report-html', `${tabName}.${jobName}.${stageName}.${stageAttempt}`, path)  
     const summaryPath = resolve(reportDir)
     writeFileSync(summaryPath, JSON.stringify(fileProperties))
     console.log(summaryPath)
@@ -50,7 +47,14 @@ function generateName (fileName) {
   }
 
 try {
-    run()
+    let reportDir = tl.getPathInput('reportDir', true, true);
+    const jobName = dashify(tl.getVariable('Agent.JobName'))
+    const stageName = dashify(tl.getVariable('System.StageDisplayName'))
+    const stageAttempt = tl.getVariable('System.StageAttempt')
+    const tabName = tl.getInput('tabName', false ) || 'Html-Report'
+    let path = resolve(reportDir)
+    console.log(path)
+    tl.addAttachment('report-html', `${tabName}.${jobName}.${stageName}.${stageAttempt}`, path)  
 } catch (error) {
     tl.setResult(tl.TaskResult.SucceededWithIssues, error.message);
 }
