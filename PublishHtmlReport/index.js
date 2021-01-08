@@ -35,7 +35,7 @@ function run () {
     // let path = resolve(reportDir)
     // console.log(path)
     // tl.addAttachment('report-html', `${tabName}.${jobName}.${stageName}.${stageAttempt}`, path)  
-    const summaryPath = resolve(join(cwd,'summary.json'))
+    const summaryPath = resolve(join(reportDir,'summary.json'))
     writeFileSync(summaryPath, JSON.stringify(fileProperties))
   console.log(summaryPath)
     tl.command('task.addattachment', { name: generateName('summary.json'), type: 'report.summary'}, summaryPath)
