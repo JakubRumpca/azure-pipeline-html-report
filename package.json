@@ -12,8 +12,8 @@
     "dashify": "^2.0.0",
     "material-table": "^1.60.0",
     "mustache": "^3.0.1",
-    "node-fetch": "^2.6.1",
-    "node-sass": "^4.14.1",
+    "node-fetch": "^2.6.7",
+    "node-sass": "^7.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-object-inspector": "^0.2.1"
