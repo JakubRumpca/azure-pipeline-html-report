@@ -68,7 +68,7 @@ abstract class AttachmentClient {
     console.log(responseText)
     return responseText
   }
-  
+
 }
 
 class BuildAttachmentClient extends AttachmentClient {
@@ -136,7 +136,7 @@ export default class TaskAttachmentPanel extends React.Component<TaskAttachmentP
               {tabs}
             </TabBar>
           : null }
-          <Observer selectedTabId={this.selectedTabId} tabContents={this.tabContents}>            
+          <Observer selectedTabId={this.selectedTabId} tabContents={this.tabContents}>
             {(props: { selectedTabId: string }) => {
               if ( this.tabContents.get(props.selectedTabId) === this.tabInitialContent) {
                 this.props.attachmentClient.getAttachmentContent(props.selectedTabId).then((content) => {
