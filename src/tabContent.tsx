@@ -68,7 +68,7 @@ abstract class AttachmentClient {
     console.log(responseText)
     return responseText
   }
-  
+
 }
 
 class BuildAttachmentClient extends AttachmentClient {
@@ -121,7 +121,7 @@ export default class TaskAttachmentPanel extends React.Component<TaskAttachmentP
       for (const attachment of attachments) {
         const metadata = attachment.name.split('.')
         // Conditionally add counter for multistage pipeline
-        const name = metadata[2] !== '__default' ? `${metadata[2]} #${metadata[3]}` : metadata[0]
+        const name = metadata[2] !== '__default' ? `${metadata[0]} #${metadata[3]}` : metadata[0]
 
         tabs.push(<Tab name={name} id={attachment.name} key={attachment.name} url={attachment._links.self.href}/>)
         this.tabContents.add(attachment.name, this.tabInitialContent)
@@ -136,7 +136,7 @@ export default class TaskAttachmentPanel extends React.Component<TaskAttachmentP
               {tabs}
             </TabBar>
           : null }
-          <Observer selectedTabId={this.selectedTabId} tabContents={this.tabContents}>            
+          <Observer selectedTabId={this.selectedTabId} tabContents={this.tabContents}>
             {(props: { selectedTabId: string }) => {
               if ( this.tabContents.get(props.selectedTabId) === this.tabInitialContent) {
                 this.props.attachmentClient.getAttachmentContent(props.selectedTabId).then((content) => {
