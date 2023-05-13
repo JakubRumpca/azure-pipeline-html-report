@@ -121,7 +121,7 @@ export default class TaskAttachmentPanel extends React.Component<TaskAttachmentP
       for (const attachment of attachments) {
         const metadata = attachment.name.split('.')
         // Conditionally add counter for multistage pipeline
-        const name = metadata[2] !== '__default' ? `${metadata[2]} #${metadata[3]}` : metadata[0]
+        const name = metadata[2] !== '__default' ? `${metadata[0]} #${metadata[3]}` : metadata[0]
 
         tabs.push(<Tab name={name} id={attachment.name} key={attachment.name} url={attachment._links.self.href}/>)
         this.tabContents.add(attachment.name, this.tabInitialContent)
